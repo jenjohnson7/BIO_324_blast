@@ -3,25 +3,30 @@
 from Bio import SeqIO
 import sys
 
-input_file = sys.argv[1]
-output_file = sys.argv[2]
+if len(sys.argv)!= 2:
+    print("Usage: python simple_trim.py <input_file> <output_file>")
 
-for seq_record in SeqIO.parse(input_file, "fasta"):
-    my_seq = seq_record.seq
+else:
 
-    i=0
-    while my_seq[i]=="N":
-        i+=1
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
 
-    j=len(my_seq)-1
-    while my_seq[j]=="N":
-        j-=1
+    for seq_record in SeqIO.parse(input_file, "fasta"):
+        my_seq = seq_record.seq
 
-    trimmed_seq = str(my_seq[i:j])
+        i=0
+        while my_seq[i]=="N":
+            i+=1
 
-    my_header = seq_record.id
+        j=len(my_seq)-1
+        while my_seq[j]=="N":
+            j-=1
 
-    out = open(output_file, "w")
-    out.write(">" + my_header + "\n")
-    out.write(trimmed_seq)
-    out.close()
+        trimmed_seq = str(my_seq[i:j])
+
+        my_header = seq_record.id
+
+        out = open(output_file, "w")
+        out.write(">" + my_header + "\n")
+        out.write(trimmed_seq)
+        out.close()
