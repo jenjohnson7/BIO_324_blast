@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # usage message
-[ $# -eq 0 ] && { echo "Usage: $0 num_results to take from each .out file"; exit 1; }
+[ $# -eq 0 ] && { echo "Usage: $0 <num_results> to take from each .out file"; exit 1; }
 
 echo "writes top N results from all .out files into a single file"
 
